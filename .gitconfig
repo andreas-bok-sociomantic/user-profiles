@@ -1,0 +1,74 @@
+[hub]
+	username = andreas-bok-sociomantic
+[user]
+	name = Andreas Bok Andersen
+	email = andreas.bok@sociomantic.com
+[core]
+	editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[help]
+	autocorrect = 0
+
+[merge]
+	keepBackup = false;
+	tool = p4merge
+[mergetool]
+prompt = false
+[mergetool "p4merge"]
+	cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	keepTemporaries = false
+	trustExitCode = false
+	keepBackup = false
+
+[diff]
+	tool = p4merge
+	compactionHeuristic = true
+
+[difftool]
+	prompt = false
+[difftool "p4merge"]
+	cmd = p4merge "$LOCAL" "$REMOTE"
+	keepTemporaries = false
+	trustExitCode = false
+	keepBackup = false
+
+[alias]
+	co = checkout
+	cm = checkout master 
+	ci = commit
+	ciam = commit -a --amend
+	st = status
+	bl = branch --list
+	br = branch --list -r 
+	ba = branch --list -a 
+	bdel = branch -D
+	brdel = push origin :
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+	ri = rebase -i 
+	riabo = rebase --abort
+	ricont = rebase --continue 
+	dt = difftool
+	rup = remote update
+	ai = add -i
+	sutag = submodule foreach git fetch -t
+	sup = submodule update
+	supi = submodule update --init
+	rbum = rebase upstream/master
+	pom = push origin master
+	puob = !git symbolic-ref -q --short HEAD | git push origin 
+#	puob =   !git status "git symbolic-ref -q --short HEAD"
+	chpck = cherry-pick 
+	chpckcnt = cherry-pick --continue
+	chpckabo = cherry-pick --abort
+	difname = diff --name-only
+	puf = push -f origin 
+	l1 = log --oneline 
+	ls = log --pretty=oneline --shortstat --numstat --color=always --graph
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
