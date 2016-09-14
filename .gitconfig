@@ -2,7 +2,6 @@
 	username = andreas-bok-sociomantic
 [user]
 	name = Andreas Bok Andersen
-	email = andreas.bok@sociomantic.com
 [core]
 	editor = vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
@@ -57,15 +56,20 @@ prompt = false
 	supi = submodule update --init
 	rbum = rebase upstream/master
 	pom = push origin master
-	puob = !git symbolic-ref -q --short HEAD | git push origin 
+	puob = !git symbolic-ref -q --short HEAD | git push origin
+	puf = push -f origin  
+        rprune = remote prune -n origin 
+        lprune = prune -n 
 #	puob =   !git status "git symbolic-ref -q --short HEAD"
 	chpck = cherry-pick 
 	chpckcnt = cherry-pick --continue
 	chpckabo = cherry-pick --abort
 	difname = diff --name-only
-	puf = push -f origin 
 	l1 = log --oneline 
 	ls = log --pretty=oneline --shortstat --numstat --color=always --graph
+	lp  = log -p
+	lg = log --grep
+	release-notes = "!sh -c 'git log $(git rev-parse --abbrev-ref HEAD) --no-merges --not master | format_release_notes.rb' -"
 
 [color "diff-highlight"]
 	oldNormal = red bold
