@@ -1,0 +1,6 @@
+{
+  "exclusionRules": "[{\"pattern\":\"https?://mail.google.com/*\",\"passKeys\":\"\"},{\"pattern\":\"*.github.com*notifications\",\"passKeys\":\"elyjk\"},{\"pattern\":\"*.facebook.com/*\",\"passKeys\":\"\"},{\"pattern\":\"https://inbox.google.com/*\",\"passKeys\":\"\"},{\"pattern\":\"*.github.com*\",\"passKeys\":\"gijkcpnwstibl/umroq\"},{\"pattern\":\"*.github.com*sociomantic*\",\"passKeys\":\"?jktg\"}]",
+  "optionsPage_showAdvancedOptions": "true",
+  "passNextKeyKeys": "[]",
+  "waitForEnterForFilteredHints": "true"
+}
