@@ -1,0 +1,6 @@
+sudo apt-fast update 
+sudo apt-fast upgrade -y
+
+sudo gem update
+
+sudo -H pip list -o  | cut -f1 -d ' ' |  tr '\n' ' ' | xargs sudo -H pip install -U 

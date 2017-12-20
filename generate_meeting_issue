@@ -1,0 +1,10 @@
+#!/bin/bash
+
+INPUT_FILE=$1
+
+if [[ -z $INPUT_FILE ]] 
+then 
+    INPUT_FILE=input.txt
+fi 
+
+sed -re 's/^ +(.+?)\/(sociomantic.+)$/- \2 \1/g' $INPUT_FILE | xclip -selection c

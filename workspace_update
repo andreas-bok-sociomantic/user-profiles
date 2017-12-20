@@ -1,0 +1,31 @@
+# Script to update git repositories and their submodules
+# 
+# Requires setting the environment variable WORKSPACE to 
+# the path where git repositories exist
+
+CURR_DIR=`pwd`
+cd $WORKSPACE
+for repo in $(ls);
+do
+	if [ -d $WORKSPACE/$repo ] && [ -e $WORKSPACE/$repo/.git ]
+	then
+		cd $WORKSPACE/$repo
+
+		# continue if `upstream` doesn't exist
+		eval git remote get-url upstream > /dev/null 2>&1 || continue
+
+		# Get the slug for the repository
+		repo=`git remote get-url upstream | sed -re 's/^.+:(.+)\.git/\1/g'`
+
+		echo "**************************************************"
+		echo "    UPDATING: '$repo'"
+		echo "**************************************************"
+		git remote update 
+		git submodule foreach git fetch -t
+		git submodule update
+		printf "\n\n"
+	fi
+done;
+cd $CURR_DIR
+
+
