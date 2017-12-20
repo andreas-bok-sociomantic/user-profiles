@@ -1,0 +1,21 @@
+# default number of entries to show
+entries=10
+branch=
+
+if [ $# -gt 0 ] 
+then
+  if [[ $1 =~ [0-9]+ ]]
+  then
+    entries=$1
+  else
+    branch=$1
+    if [[ ! -z $2 && $2 =~ [0-9]+ ]]
+    then 
+      entries=$2
+    fi 
+  fi
+fi
+
+#echo "branch=$branch, entries=$entries"
+
+git log --color=always --oneline $branch -$entries | nl --number-format=ln -w 4 "-s: "

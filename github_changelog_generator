@@ -1,0 +1,17 @@
+if [ -z $1 ]
+then 
+  echo "Milestone number is missing"
+  exit 1
+fi 
+
+ms_url=`git remote get-url upstream |tr : \/ |  cut -d . -f 1,2 | cut -c 5-` 
+ms_url=https://$ms_url/milestone/$1
+tmpfile=mktemp
+
+gh is -l -M $1 --remote upstream  --state closed > $tmpfile 
+
+echo "[$ms_url]($ms_url?closed=1)"
+echo
+echo "## Issues fixed"
+echo
+cat $tmpfile | sed -re 's/^(#[0-9]+) (.+) @.+\)$/- \2 (\1)/g' 

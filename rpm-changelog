@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# Usage:
+#  rpm-changelog [version number]
+
+# get the package maintainer from github settings
+pkgmaint=$(echo "`git config user.name` <`git config user.email`>")
+
+# generate change log in rpm format
+genchangelog()
+{
+    echo "* `LANG=C date +"%a %b %d %Y"` $pkgmaint - v$1"
+    prevtag=$(git describe --abbrev=0 HEAD^)
+    git log --date=short --format="- %s (%cd)" "$prevtag"..HEAD |
+    fold --spaces --width 76
+}
+
+genchangelog $1
