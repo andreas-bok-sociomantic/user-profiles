@@ -12,7 +12,7 @@
 	keepBackup = false;
 	tool = p4merge
 [mergetool]
-prompt = false
+	prompt = false
 [mergetool "p4merge"]
 	cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
 	keepTemporaries = false
@@ -33,21 +33,21 @@ prompt = false
 
 [alias]
 	co = checkout
-	cm = checkout master 
+	cm = checkout master
 	ci = commit
 	ciam = commit -a --amend
 	st = status
 	bl = branch --list
-	br = branch --list -r 
-	ba = branch --list -a 
+	br = branch --list -r
+	ba = branch --list -a
 	bdel = branch -D
 	brdel = push origin :
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	type = cat-file -t
 	dump = cat-file -p
-	ri = rebase -i 
+	ri = rebase -i
 	riabo = rebase --abort
-	ricont = rebase --continue 
+	ricont = rebase --continue
 	dt = difftool
 	rup = remote update
 	ai = add -i
@@ -57,15 +57,15 @@ prompt = false
 	rbum = rebase upstream/master
 	pom = push origin master
 	puob = !git symbolic-ref -q --short HEAD | git push origin
-	puf = push -f origin  
-        rprune = remote prune -n origin 
-        lprune = prune -n 
+	puf = push -f origin
+        rprune = remote prune -n origin
+        lprune = prune -n
 #	puob =   !git status "git symbolic-ref -q --short HEAD"
-	chpck = cherry-pick 
+	chpck = cherry-pick
 	chpckcnt = cherry-pick --continue
 	chpckabo = cherry-pick --abort
 	difname = diff --name-only
-	l1 = log --oneline 
+	l1 = log --oneline
 	ls = log --pretty=oneline --shortstat --numstat --color=always --graph
 	lp  = log -p
 	lg = log --grep
