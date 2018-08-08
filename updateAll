@@ -1,6 +1,21 @@
-sudo apt-fast update 
+#!/bin/bash
+
+sudo apt-fast update
 sudo apt-fast upgrade -y
 
 sudo gem update
 
-pip list -o  | grep -v '(idna|\requests|\texttable|\urllib3)' |   cut -f1 -d ' ' |  awk 'NR>=3' |  tr '\n' ' '  | xargs pip install -U 
+PIP_OUTDATED=""
+if [ -n "$PIP_IGNORE_PKGS" ]; then
+  PIP_OUTDATED=`pip list -o  | grep -v '(${PIP_IGNORE_PKGS// /\\|})' |   cut -f1 -d ' ' |  awk 'NR>=3' |  tr '\n' ' '`
+ else
+  PIP_OUTDATED=`pip list -o  | cut -f1 -d ' ' |  awk 'NR>=3' |  tr '\n' ' '`
+fi
+
+if [ -n "$PIP_OUTDATED" ]; then
+	echo "Upgrading python packages. Ignoring ($PIP_IGNORE_PKGS) "
+    pip install -U $PIP_OUTDATED
+else
+	echo "No outdated python packages found"
+fi
+#pip list -o  | grep -v '(idna|\requests|\texttable|\urllib3)' |   cut -f1 -d ' ' |  awk 'NR>=3' |  tr '\n' ' '  | xargs pip install -U
